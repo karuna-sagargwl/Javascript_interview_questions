@@ -1,0 +1,35 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+let sum = 0;
+const calc = (n)=> {
+    for(let i=0;i<=n;i++){
+        sum += i;
+    }
+    return sum;
+}
+
+const memo= (fun) => {
+    let cache = {}
+    return function(...args){
+        let n = args[0]
+        if(n in cache){
+            console.log("Cache")
+            return cache[n];
+        }
+        else{
+            console.log("First time intregation")
+            let result = fun(n)
+            cache[n] = result;
+            return result;
+        }
+    }
+}
+console.time()
+const data = memo(calc)
+console.log(data(5))
+console.timeEnd()
+
+console.time()
+console.log(data(5))
+console.timeEnd()
